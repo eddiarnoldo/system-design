@@ -73,4 +73,39 @@ This should take 2 to 3 min of your interview:
 ## Core Entities
 #### 2 minutes
 
-Continue here....
+This is the step in which you need to identify the entities of the system you're trying to design. Think on a small list of entities that way you can navigate to the high level design and maybe even discover new entities you didn't consider before or even relationships
+
+#### Tips
+- Think about which are the actors of the system you're building and also consider if they overlap
+- Think about the nouns(place, object etc) and resources necessary to satisfy the functional requirements.
+
+### API / System Interface
+#### 5 minutes
+This is the step in which we need to define our API endpoints that will create the contract between the system and the users. Usually the Functional Requirements will help us define this section but there could be other APIs needed that are not clear by just looking at the requirements
+- REST
+	- When having an external API which benefits from JSON (use HTTP verbs)
+- RPC
+	- Super fast used in internal server to server apis, binary serialization
+- GraphQL
+	- Let users define what they should get
+- Real time?
+	- WebSockets, Server Sent Events (SSE) be cautious sometimes a polling mechanism might be enough since web sockets require constant connections between systems and you now will need to manage that as well
+
+```
+POST /v1/tweets
+body: {
+  "text": string
+}
+
+GET /v1/tweets/{tweetId} -> Tweet
+
+POST /v1/follows
+body: {
+  "followee_id": string
+}
+
+GET /v1/feed -> Tweet[]
+```
+
+> Derive the user from the authentication you will add in your API.
+
